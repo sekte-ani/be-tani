@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->string("file");
+            $table->string("modul");
             $table->timestamps();
         });
     }

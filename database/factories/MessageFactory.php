@@ -19,7 +19,6 @@ class MessageFactory extends Factory
         return [
             'subject' => fake()->sentence(mt_rand(2, 10)),
             'message' => fake()->paragraph(),
-            'user_id' => mt_rand(2, 4)
-        ];
+            'user_id' => mt_rand(2, 4)        ];
     }
 }
