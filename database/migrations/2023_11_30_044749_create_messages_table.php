@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text("subject");
             $table->text("message");
             $table->foreignId('user_id');
+            $table->enum('status', [0, 1])->default(0);
             $table->timestamps();
         });
     }

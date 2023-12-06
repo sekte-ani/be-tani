@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
+    Route::resource('/modul', DocumentController::class);
+
+    Route::get('/pesan', [MessageController::class, 'index'])->name('pesan');
+    Route::get('/pesan/{message:id}', [MessageController::class, 'readMessage'])->name('pesan');
 });
+
+
+
+
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');;
+Route::post('/login',  [LoginController::class, 'authenticate']);
+Route::post('/logout',  [LoginController::class, 'logout']);
+
