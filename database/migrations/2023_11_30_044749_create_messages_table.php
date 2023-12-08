@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->text("subject");
             $table->text("message");
-            $table->foreignId('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
         });
     }
 
